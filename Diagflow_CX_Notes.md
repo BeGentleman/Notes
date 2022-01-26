@@ -1,61 +1,90 @@
-- [1. 创建Google Cloud 项目](#1---google-cloud---)
-  * [1.1 登录google cloud platform](#11---google-cloud-platform)
-  * [1.2 新建项目](#12-----)
-    + [1.2.1 步骤1：](#121---1-)
-    + [1.2.2 步骤2：](#122---2-)
-  * [1.3 为该项目创建服务账号](#13-----------)
-    + [1.3.1 什么是服务账号？](#131---------)
-    + [1.3.2 创建步骤](#132-----)
-      - [1.3.2.1 步骤1](#1321---1)
-      - [1.3.2.2 步骤2](#1322---2)
-      - [1.3.2.3 步骤3](#1323---3)
-  * [1.4 为该服务账号创建其密匙](#14------------)
-    + [1.4.1 步骤1](#141---1)
-    + [1.4.2 步骤2](#142---2)
-  * [1.5 最佳做法与解决方案](#15----------)
-    + [1.5.1 谷歌技术人员给出的建议：](#151-------------)
-    + [1.5.2 具体步骤：](#152------)
-    + [3. 设置环境变量](#3-------)
-      - [3.1 windows+pycharm的环境变量设置。](#31-windows-pycharm--------)
-      - [3.2 linux, mac用户的环境变量设置](#32-linux--mac---------)
-- [2.代理的操作：](#2------)
-  * [2.1 代理的创建](#21------)
-  * [2.2 代理的导入](#22------)
-  * [2.3 代理的导出](#23------)
-  * [2.4 代理的删除](#24------)
-- [3. dialogflow 控制台面板功能介绍](#3-dialogflow----------)
-  * [3.1 Build](#31-build)
-  * [3.2 Manage](#32-manage)
-  * [3.3 Agent Test](#33-agent-test)
-  * [3.4 Agent settings](#34-agent-settings)
-- [4. 流、页面、意图、实体、参数的概念](#4-----------------)
-  * [4.1 流](#41--)
-      - [4.1.1 流的特点](#411-----)
-      - [4.1.2 流的初始页面](#412-------)
-      - [4.1.3 流的增、删、导出、导入](#413------------)
-        * [4.1.3.1 增加流：](#4131-----)
-        * [4.1.3.2 删除流：](#4132-----)
-        * [4.1.3.3 导出流：](#4133-----)
-        * [4.1.3.2 导入流：](#4132-----)
-  * [4.2 页面](#42---)
-    + [4.2.1 页面的特点：](#421-------)
-    + [4.2.2 页面的功能](#422------)
+<a name="index">**目录**</a>
+</br>
+<a href="#0">1. 创建Google Cloud 项目</a>  
+&emsp;<a href="#1">1.1 登录google cloud platform</a>  
+&emsp;<a href="#2">1.2 新建项目</a>  
+&emsp;&emsp;<a href="#3">1.2.1 步骤1</a>  
+&emsp;&emsp;<a href="#4">1.2.2 步骤2</a>  
+&emsp;<a href="#5">1.3 为该项目创建服务账号 </a>  
+&emsp;&emsp;<a href="#6">1.3.1 什么是服务账号？</a>  
+&emsp;&emsp;<a href="#7">1.3.2 创建步骤</a>  
+&emsp;&emsp;&emsp;<a href="#8">1.3.2.1 步骤1</a>  
+&emsp;&emsp;&emsp;<a href="#9">1.3.2.2 步骤2 </a>  
+&emsp;&emsp;&emsp;<a href="#10">1.3.2.3 步骤3</a>  
+&emsp;<a href="#11">1.4 为该服务账号创建其密匙</a>  
+&emsp;&emsp;<a href="#12">1.4.1 步骤1</a>  
+&emsp;&emsp;<a href="#13">1.4.2 步骤2</a>  
+&emsp;<a href="#14">1.5 最佳做法与解决方案</a>  
+&emsp;&emsp;<a href="#15">1.5.1 谷歌技术人员给出的建议</a>  
+&emsp;&emsp;<a href="#16">1.5.2 具体步骤</a>  
+<a href="#17">2.代理的操作</a>  
+&emsp;<a href="#18">2.1 代理的创建</a>  
+&emsp;&emsp;<a href="#19">2.1.1 通过控制台创建</a>  
+&emsp;&emsp;<a href="#20">2.1.2 通过客户端创建</a>  
+&emsp;&emsp;&emsp;<a href="#21">2.1.2.1 创建代理需要传入参数</a>  
+&emsp;&emsp;&emsp;<a href="#22">2.1.2.2 代理的可选时区、语言、区域表</a>  
+&emsp;&emsp;&emsp;<a href="#23">2.1.2.3 代码段</a>  
+&emsp;<a href="#24">2.2 代理的导出</a>  
+&emsp;&emsp;<a href="#25">2.2.1 使用控制台导出</a>  
+&emsp;&emsp;<a href="#26">2.2.2 使用客户端库导出</a>  
+&emsp;<a href="#27">2.3 代理的导入</a>  
+&emsp;&emsp;<a href="#28">2.3.1 通过控制台导入</a>  
+&emsp;&emsp;<a href="#29">2.3.2 通过客户端库导入</a>  
+&emsp;<a href="#30">2.4 代理的删除</a>  
+&emsp;&emsp;<a href="#31">2.4.1 通过控制台删除</a>  
+&emsp;&emsp;<a href="#32">2.4.2 通过客户端库删除</a>  
+<a href="#33">3. Dialogflow 控制台面板功能介绍</a>  
+&emsp;<a href="#34">3.1 Build</a>  
+&emsp;<a href="#35">3.2 Manage</a>  
+&emsp;<a href="#36">3.3 Agent Test</a>  
+&emsp;<a href="#37">3.4 Agent settings</a>  
+<a href="#38">3. 设置环境变量</a>  
+&emsp;<a href="#39">3.1 windows 用户的环境变量设置</a>  
+&emsp;<a href="#40">3.2 linux, mac 用户的环境变量设置</a>  
+<a href="#41">4. 流、页面、意图、实体的概念和用法</a>  
+&emsp;<a href="#42">4.1 流</a>  
+&emsp;&emsp;<a href="#43">4.1.1 流的特点</a>  
+&emsp;&emsp;<a href="#44">4.1.2 流的增、删、导出、导入</a>  
+&emsp;&emsp;&emsp;<a href="#45">4.1.2.1 增加流</a>  
+&emsp;&emsp;&emsp;<a href="#46">4.1.2.2 删除流</a>  
+&emsp;&emsp;&emsp;<a href="#47">4.1.2.3 导出流</a>  
+&emsp;&emsp;&emsp;<a href="#48">4.1.2.4 导入流</a>  
+&emsp;<a href="#49">4.2 页面 </a>  
+&emsp;&emsp;<a href="#50">4.2.1 页面的特点</a>  
+&emsp;&emsp;<a href="#51">4.2.2 初始页面的功能</a>  
+&emsp;&emsp;<a href="#52">4.2.3 普通页面的功能</a>  
+&emsp;&emsp;&emsp;<a href="#53">4.2.3.1 Entry fulfillment </a>  
+&emsp;&emsp;&emsp;<a href="#54">4.2.3.2 Parameters参数收集</a>  
+&emsp;&emsp;&emsp;<a href="#55">4.2.3.3 Add state handler 状态处理</a>  
+&emsp;&emsp;&emsp;&emsp;<a href="#56">4.2.3.3.1 Routes 路由</a>  
+&emsp;&emsp;&emsp;&emsp;<a href="#57">4.2.3.3.2 Routes Groups 路由组</a>  
+&emsp;&emsp;&emsp;&emsp;<a href="#58">4.2.3.3.3 Event Handler 事件处理</br></a>  
+&emsp;<a href="#59">4.3 意图</a>  
+&emsp;&emsp;<a href="#60">4.3.1 意图匹配</a>  
+&emsp;&emsp;<a href="#61">4.3.2 默认欢迎意图</a>  
+&emsp;&emsp;<a href="#62">4.3.3 默认负意图</a>  
+&emsp;&emsp;<a href="#63">4.3.4 取消意图</a>  
+&emsp;<a href="#64">4.4 实体</a>  
+&emsp;&emsp;<a href="#65">4.4.1 实体类型</a>  
+&emsp;&emsp;<a href="#66">4.4.2 “普通实体”和会话实体</a>  
+<a href="#67">5. 流的版本和环境</a>  
+&emsp;<a href="#68">5.1 概念</a>  
+&emsp;<a href="#69">5.2 创建建流版本</a>  
+&emsp;<a href="#70">5.3 创建环境</a>  
+# <a name="0">1. 创建Google Cloud 项目</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-
-# 1. 创建Google Cloud 项目
-
-## 1.1 登录google cloud platform
+## <a name="1">1.1 登录google cloud platform</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 [登录链接](https://console.cloud.google.com/user-preferences/cloud-profile)
 
-## 1.2 新建项目
+## <a name="2">1.2 新建项目</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-### 1.2.1 步骤1：
+### <a name="3">1.2.1 步骤1：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![image-20220124194935803](./imgs/image-20220124194935803.png)
 
 
-### 1.2.2 步骤2：
+### <a name="4">1.2.2 步骤2：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ​			注：一个google 账号可以创建25个项目，如需要创建更多项目，需要申请开通。
 
@@ -66,36 +95,34 @@
 ​				![image-20220124200940218](./imgs/image-20220124200940218.png)
 
 
+## <a name="5">1.3 为该项目创建服务账号 </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-## 1.3 为该项目创建服务账号 
-
-### 1.3.1 什么是服务账号？
+### <a name="6">1.3.1 什么是服务账号？</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 是一个供计算机用的虚拟账号，用来访问Google Cloud资源。
 [链接](https://cloud.google.com/iam/docs/service-accounts?hl=zh-cn&_ga=2.98308319.-139742340.1639388700)
 
-### 1.3.2 创建步骤
+### <a name="7">1.3.2 创建步骤</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-#### 1.3.2.1 步骤1
+#### <a name="8">1.3.2.1 步骤1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 ![image-20220124201854459](./imgs/image-20220124201854459.png)
 
-#### 1.3.2.2 步骤2 
+#### <a name="9">1.3.2.2 步骤2 </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![image-20220124202446756](./imgs/image-20220124202446756.png)
 
-#### 1.3.2.3 步骤3
+#### <a name="10">1.3.2.3 步骤3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![image-20220124202551723](./imgs/image-20220124202551723.png)
 
 
-## 1.4 为该服务账号创建其密匙
+## <a name="11">1.4 为该服务账号创建其密匙</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-### 1.4.1 步骤1
-
+### <a name="12">1.4.1 步骤1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![image-20220125084221441](./imgs/image-20220125084221441.png)
 
-### 1.4.2 步骤2
+### <a name="13">1.4.2 步骤2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 ![image-20220125084258081](./imgs/image-20220125084258081.png)
 
 
@@ -103,10 +130,9 @@
 
 ![image-20220125084341615](./imgs/image-20220125084341615.png)
 
+## <a name="14">1.5 最佳做法与解决方案</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-## 1.5 最佳做法与解决方案
-
-### 1.5.1 谷歌技术人员给出的建议：
+### <a name="15">1.5.1 谷歌技术人员给出的建议：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 为一个谷歌项目创建其对应的服务账号，如果有多个谷歌项目，就需要多个服务账号，这样方便账单的计算。 这样基于最小权限原则，对项目管理也相对安全。 
 
 基于公司的业务需求，服务账号该以如下方法进行管理。 
@@ -120,7 +146,7 @@
 将其中一个服务账号作为父账号，其功能是生成json密匙，我们可以根据需求将父账号的作为owner的角色添加到子账号。 谷歌的服务账号本身并没有父子等级关系，这样做完全基于公司的的业务管理需求。
 以此达到了使用一把json密匙，访问到多个dialogflow cx项目
 
-### 1.5.2 具体步骤：
+### <a name="16">1.5.2 具体步骤：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 假如现在有两个project，分别为projectTest1，catering Robot。 这两个项目都已经通过上面的方式建立了自己的服务账号，我们想要做到用catering Robot的密匙访问projectTest1.
 
 步骤1：
@@ -136,73 +162,11 @@
 ![image-20220125132619330](./imgs/image-20220125132619330.png)
 
 
-### 1.6 设置环境变量
-
-[链接](https://cloud.google.com/iam/docs/service-accounts?hl=zh-cn&_ga=2.98308319.-139742340.1639388700)
-
-拿到上一步下载的json密匙绝对路径
-
-#### 1.6.1 windows 用户的环境变量设置
-
-前提：
-windows+pycharm 
-
-以下配置方法生效范围为整个pycharm项目目录
-
-假设你的json密匙绝对路径为：C:\Users\admin\xxxx\xxxbcb6202b4.json
-
-环境变量格式： GOOGLE_APPLICATION_CREDENTIALS=C:\Users\admin\xxxx\xxxbcb6202b4.json
-
-选中pycharm项目中任一py文件，单击右上角。
-
-![image-20220125094055760](./imgs/image-20220125094055760.png)
-
-![image-20220125094238473](./imgs/image-20220125094238473.png)
-
-在红色框出输入GOOGLE_APPLICATION_CREDENTIALS=C:\Users\admin\xxxx\xxxbcb6202b4.json
-
-点击apply，这样你就可以访问谷歌项目了。
-
-![image-20220125094441290](./imgs/image-20220125094441290.png)
-
-
-
-#### 1.6.2 linux, mac 用户的环境变量设置
-
-可以直接把json密匙路径配置到用户环境变量，生效范围为该linux系统的用户，当然你也可也设置linux系统级的环境变量（参照链接：https://www.cnblogs.com/lihao-blog/p/6945040.html）
-
-下面展示把json密匙配置到linux用户级的环境变量。
-
-1 进入用户的根目录
-
-cd  $HOME 或 cd ~
-
-$ vim  .bashrc
-
-2 然后打开.bashrc若不存在则新建.bashrc文件
-
-vim  .bashrc
-
-3 在.bashrc页面最后加上想要加的路径
-
-export GOOGLE_APPLICATION_CREDENTIALS=/var/www_r/www_bot/catering-robot-aecbcb6202b4.json
-
-请将json密匙的地址替换为你的绝对路径。
-
-![image-20220125095852958](./imgs/image-20220125095852958.png)
-
-4 最后执行
-
-source ~/.bashrc
-
-搞定！
-
-
-# 2.代理的操作：
-## 2.1 代理的创建
+# <a name="17">2.代理的操作：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="18">2.1 代理的创建</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 我们可以通过API、客户端、控制台创建代理
 这里仅展示通过控制台、客户端创建代理。
-### 2.1.1 通过控制台创建
+### <a name="19">2.1.1 通过控制台创建</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 登录后，在project下拉框，你会发现刚刚创建的google could 项目 projectTest已经显示到了这里。
 
 1.点击 Enable API ->create agent
@@ -228,14 +192,14 @@ dialogflow代理id为谷歌自动生成，创建代理成功后可以通过API�
 一个google dialogflow cx项目（也叫google cloud项目）下可以创建1000个代理，具体参数限制如下表。
 
 ![image-20220125101122308](./imgs/image-20220125101122308.png)
-### 2.1.2 通过客户端创建
-#### 2.1.2.1 创建代理需要传入参数
+### <a name="20">2.1.2 通过客户端创建</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+#### <a name="21">2.1.2.1 创建代理需要传入参数</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 project_id：项目id， 这个可以通过复制dialogflow控制台拿到</br>
 location：代理所在的谷歌服务器区域，目前已经开通12个服务区域</br>
 time_zone：代理所使用的时间</br>
 language_code：代理所使用的主识别语言</br>
 display_name： 给代理取名，注意一个区域下的代理名字不能重复</br>
-#### 2.1.2.2 代理的可选时区、语言、区域表
+#### <a name="22">2.1.2.2 代理的可选时区、语言、区域表</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 更新时间2022.1.25
 
@@ -412,7 +376,7 @@ zu — Zulu
 '''
 ```
 
-#### 2.1.2.3 代码段
+#### <a name="23">2.1.2.3 代码段</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 只要使用 dialogflow 客户端，就必须先安装客户端库：</br>
 安装命令为：</br>
 $pip install google-cloud-dialogflow-cx
@@ -444,14 +408,14 @@ def crateAgent(project_id='catering-robot',location='asia-northeast1',time_zone=
     
 ```
 
-## 2.2 代理的导出
-### 2.2.1 使用控制台导出
+## <a name="24">2.2 代理的导出</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="25">2.2.1 使用控制台导出</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 步骤1</br>
 ![image](https://user-images.githubusercontent.com/30898964/150994138-4e1a7d7a-3f05-46a4-91aa-bb2f5b4bf02c.png)
 步骤2</br>
 ![image](https://user-images.githubusercontent.com/30898964/150997846-3822be2d-1bc7-49db-b099-822f6eec67dd.png)
 
-### 2.2.2 使用客户端库导出
+### <a name="26">2.2.2 使用客户端库导出</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 [文档链接](https://googleapis.dev/python/dialogflow-cx/latest/dialogflowcx_v3beta1/agents.html)
 
 这里只是为了展示代理导出的功能才使用while True，实际项目中，请不要这样使用。</br>
@@ -495,8 +459,8 @@ if __name__ == '__main__':
 
 ```
 
-## 2.3 代理的导入
-### 2.3.1 通过控制台导入
+## <a name="27">2.3 代理的导入</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="28">2.3.1 通过控制台导入</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 步骤1：
 ![image](https://user-images.githubusercontent.com/30898964/151000728-1e3709d1-e8e3-41de-8522-c01a2979176f.png)
 步骤2：
@@ -505,7 +469,7 @@ if __name__ == '__main__':
 ![image](https://user-images.githubusercontent.com/30898964/151000911-11d2ff7b-c764-4bd4-8074-e40ee51181ef.png)
 
 
-### 2.3.2 通过客户端库导入
+### <a name="29">2.3.2 通过客户端库导入</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 步骤：</br>
 - 先导出一个代理，那到该代理的二进制文件
 - 通过新建一个代理或者使用现有的代理，然后执行导入操作。
@@ -542,27 +506,27 @@ if __name__ == '__main__':
 
 ```
 
-## 2.4 代理的删除
-### 2.4.1 通过控制台删除
+## <a name="30">2.4 代理的删除</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="31">2.4.1 通过控制台删除</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 步骤1：
 ![image](https://user-images.githubusercontent.com/30898964/151003260-1087ad8a-5bf7-4a7e-a9e7-719578b717c8.png)
 步骤2：
 ![image](https://user-images.githubusercontent.com/30898964/151003345-e5242c6d-2154-450b-92ac-560c9648f050.png)
 
 
-### 2.4.2 通过客户端库删除
+### <a name="32">2.4.2 通过客户端库删除</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 待更新......</r>
 通过客户端库删除代理的方法可参照代理的创建代码段， 
 
 
-# 3. Dialogflow 控制台面板功能介绍
+# <a name="33">3. Dialogflow 控制台面板功能介绍</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-## 3.1 Build
+## <a name="34">3.1 Build</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![image-20220125133721423](./imgs/image-20220125133721423.png)
 
 
-## 3.2 Manage
+## <a name="35">3.2 Manage</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 Resources:
 
@@ -586,7 +550,7 @@ Prebuild Agent：
 
 ![image-20220125142022121](./imgs/image-20220125142022121.png)
 
-## 3.3 Agent Test
+## <a name="36">3.3 Agent Test</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 点击右边test Agent可对创作好的代理进行测试。
 
@@ -613,7 +577,7 @@ Prebuild Agent：
 ![image-20220125141552260](./imgs/image-20220125141552260.png)
 
 
-## 3.4 Agent settings
+## <a name="37">3.4 Agent settings</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 点击控制台右上角Agent setting->ML </br>
 
@@ -630,11 +594,73 @@ Prebuild Agent：
 ![image-20220125140729785](./imgs/image-20220125140729785.png)
 
 
-# 4. 流、页面、意图、实体的概念和用法
+# <a name="38">3. 设置环境变量</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-## 4.1 流
+[链接](https://cloud.google.com/iam/docs/service-accounts?hl=zh-cn&_ga=2.98308319.-139742340.1639388700)
 
-### 4.1.1 流的特点
+拿到上一步下载的json密匙绝对路径
+
+## <a name="39">3.1 windows 用户的环境变量设置</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+前提：
+windows+pycharm 
+
+以下配置方法生效范围为整个pycharm项目目录
+
+假设你的json密匙绝对路径为：C:\Users\admin\xxxx\xxxbcb6202b4.json
+
+环境变量格式： GOOGLE_APPLICATION_CREDENTIALS=C:\Users\admin\xxxx\xxxbcb6202b4.json
+
+选中pycharm项目中任一py文件，单击右上角。
+
+![image-20220125094055760](./imgs/image-20220125094055760.png)
+
+![image-20220125094238473](./imgs/image-20220125094238473.png)
+
+在红色框出输入GOOGLE_APPLICATION_CREDENTIALS=C:\Users\admin\xxxx\xxxbcb6202b4.json
+
+点击apply，这样你就可以访问谷歌项目了。
+
+![image-20220125094441290](./imgs/image-20220125094441290.png)
+
+
+
+## <a name="40">3.2 linux, mac 用户的环境变量设置</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+可以直接把json密匙路径配置到用户环境变量，生效范围为该linux系统的用户，当然你也可也设置linux系统级的环境变量（参照链接：https://www.cnblogs.com/lihao-blog/p/6945040.html）
+
+下面展示把json密匙配置到linux用户级的环境变量。
+
+1 进入用户的根目录
+
+cd  $HOME 或 cd ~
+
+$ vim  .bashrc
+
+2 然后打开.bashrc若不存在则新建.bashrc文件
+
+vim  .bashrc
+
+3 在.bashrc页面最后加上想要加的路径
+
+export GOOGLE_APPLICATION_CREDENTIALS=/var/www_r/www_bot/catering-robot-aecbcb6202b4.json
+
+请将json密匙的地址替换为你的绝对路径。
+
+![image-20220125095852958](./imgs/image-20220125095852958.png)
+
+4 最后执行
+
+source ~/.bashrc
+
+搞定！
+
+
+# <a name="41">4. 流、页面、意图、实体的概念和用法</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+## <a name="42">4.1 流</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+### <a name="43">4.1.1 流的特点</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 - 每个代理有且仅有一个默认初始流Default start flow[默认初始流](https://cloud.google.com/dialogflow/cx/docs/concept/flow#start)的流，这是一轮对话的入口。对于简单的代理，您可能只需要这一个流。较复杂的代理可能需要更多的流，不同的开发团队成员可以负责构建和维护这些流。也就是当业务广或很复杂的时候，我们可以把功能抽象出来，用一个流执行一类的功能操作，这样方便流的管理和后期流的版本控制。
 
@@ -644,10 +670,7 @@ Prebuild Agent：
 
 - 每个流都有一个默认的start page，在调用该代理的API或使用客户端时，可以通过 pageId=START_PAGE 判断是否为开始流。
 
-
-
-
-### 4.1.3 流的增、删、导出、导入
+### <a name="44">4.1.2 流的增、删、导出、导入</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 流的操作有三种方式:</br>
 1.通过API ([链接](https://cloud.google.com/dialogflow/cx/docs/concept/flow))。 </br>
@@ -655,13 +678,13 @@ Prebuild Agent：
 3.通过控制台。 下面展示了通过控制台创建流。</br>
 
 
-#### 4.1.3.1 增加流：
+#### <a name="45">4.1.2.1 增加流：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 在dialogflow cx 控制台 ->点击build-> 点击 + 号->点击create flow->输入流名 ->回车保存</br>
 
 ![image-20220125161314942](./imgs/image-20220125161314942.png)
 
-##### 4.1.3.2 删除流：
+#### <a name="46">4.1.2.2 删除流：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 打开dialogflow cx 控制台 ->点击build-> 点击 + 号->点击Delete->输入流名 ->回车保存 </br>
 
@@ -671,8 +694,7 @@ Prebuild Agent：
 
 ![image-20220125161726476](./imgs/image-20220125161726476.png)
 
-
-##### 4.1.3.3 导出流：
+#### <a name="47">4.1.2.3 导出流：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 打开dialogflow cx 控制台 ->鼠标移到要导出的流->点击三个点->点击Export flow ->回车保存</br>
 
@@ -686,7 +708,7 @@ Download：存到本地</br>
 
 ![image-20220125163426361](./imgs/image-20220125163426361.png)
 
-##### 4.1.3.2 导入流：
+#### <a name="48">4.1.2.4 导入流：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 这里仅展示将本地存储的流文件导入到代理。</br>
 
@@ -697,13 +719,12 @@ Download：存到本地</br>
 ![image-20220125164334682](./imgs/image-20220125164334682.png)
 
 
-
-## 4.2 页面 
+## <a name="49">4.2 页面 </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![image-20220125153012686](./imgs/image-20220125153012686.png)
 
 
-### 4.2.1 页面的特点：
+### <a name="50">4.2.1 页面的特点：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 - 上图中的每个节点为一个页面，一轮对话相当于一个状态机，一个页面反应了当前对话的状态。
 
@@ -721,7 +742,7 @@ Download：存到本地</br>
 
 ![image](https://user-images.githubusercontent.com/30898964/151005998-1a5d23de-55b6-4810-934b-286713753a6b.png)
 
-### 4.2.2 初始页面的功能
+### <a name="51">4.2.2 初始页面的功能</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 初始页面和普通的页面功能不一，在初始页里，你只可以：</br>
 
@@ -738,18 +759,17 @@ Download：存到本地</br>
 ![image-20220125145157219](./imgs/image-20220125145157219.png)
 
 
-### 4.2.3 普通页面的功能
+### <a name="52">4.2.3 普通页面的功能</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 当进入一个页面时候，页面的执行顺序为：</br>
 Entry fulfillment -> Parameter收集（如果有）-> Routes 和 Route Groups（如果有） -> EventHandler（如果我们为当前页设置了事件处理,如果没设置默认调Dafault Start Flow的事件处理）</br>
 
 ![image](https://user-images.githubusercontent.com/30898964/151007620-1b705164-7de0-4c8b-a477-2e014571ea30.png)
 
-#### 4.2.3.1 Entry fulfillment 
+#### <a name="53">4.2.3.1 Entry fulfillment </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 在这里你可以根据业务逻辑添加回复，或者介绍一类的语句。入口fulfillment会在进入该页时立即被调用。</br>
 
-
-#### 4.2.3.2 Parameters参数收集
+#### <a name="54">4.2.3.2 Parameters参数收集</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 参数分为：</br>
 - 意图参数
 - 表单参数
@@ -815,14 +835,14 @@ isList 和 Redact in Log 的意思请参照上面的解释。</br>
 $session.params.parameter-id
 
 如：$session.params.color color为收集参数的时候填写的参数名
-#### 4.2.3.2 Add state handler 状态处理
+#### <a name="55">4.2.3.3 Add state handler 状态处理</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 ![image](https://user-images.githubusercontent.com/30898964/151103822-5a52bed4-610e-47d5-9b4d-dd9312774a9e.png)
 
 state handler 共有三种（如上图）：</br>
 - Routes（路由） 决定了对话的逻辑
 - Routes groups  一组路由的封装
 - Event Handler  用于事件处理
-##### 4.2.2.2.1 Routes 路由
+##### <a name="56">4.2.3.3.1 Routes 路由</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 1.Routes分为意图路由和条件路由。</br>
 什么时候系统将调用Routes？</br>
 - 当某个用户意图被命中时候。</br>
@@ -905,11 +925,11 @@ GREATER_THAN_EQUALS (>=) </br>
 - book table 转移到已有的自定义流</br>
 - Default Start Flow 转移到代理默认开始流</br>
 
-##### 4.2.3.2.2 Routes Groups 路由组
+##### <a name="57">4.2.3.3.2 Routes Groups 路由组</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 Route Groups 为路由组，路由组打包了一组路由。当你在多个页面需要多个同样功能的路由时，你可以把这些路由添加到一个路由组。路由组的好处是为了方便移植，在页面A添加了路由组R后，其他页面都可以加入该路由组R，前提是需要加入该路由组到该页面，访问该页面时才会生效。</br>
 
 
-##### 4.2.3.2.3 Event Handler 事件处理</br>
+##### <a name="58">4.2.3.3.3 Event Handler 事件处理</br></a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 点击页面 "Add state handler" -》勾选Event Handler，如下图：</br>
 ![image](https://user-images.githubusercontent.com/30898964/151100522-a96b7600-6197-45de-aa14-63e1617a0f49.png)
 
@@ -919,22 +939,22 @@ Route Groups 为路由组，路由组打包了一组路由。当你在多个页�
 ![image](https://user-images.githubusercontent.com/30898964/151104633-975c1b24-6334-4b8c-b189-c892f96b44e1.png)
 
 
-## 4.3 意图
+## <a name="59">4.3 意图</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 我们可以在控制台，或者通过API或Dialogflow客户端库对意图增删改。详情参照链接[链接](https://cloud.google.com/dialogflow/cx/docs/concept/intent)
 创建意图的方式：</br>
 点击manage -> create->填入意图名，收集参数（如需要）</br>
 ![image](https://user-images.githubusercontent.com/30898964/151105237-624db33e-8422-4a1a-bf2f-ec26b9813631.png)
 
-### 4.3.1 意图匹配
+### <a name="60">4.3.1 意图匹配</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 当最终用户输入或说出某些内容（称为“最终用户输入”）时，Dialogflow 会将该输入与意图训练短语进行比较，以找到最佳匹配。此过程称为“意图匹配”。只有与范围内的意图路由（具有意图要求的状态处理程序）关联的意图才会发生意图匹配。</br>
 在搜索匹配意图时，Dialogflow 根据“意图置信度分数”（也称“置信度分数”）为潜在匹配项评分。取值范围从 0.0（完全不确定）到 1.0（完全确定）。 在对意图进行评分后，可能会出现以下两种结果：</br>
 如果得分最高的意图的置信度得分大于或等于分类阈值设置，则系统会将其返回为匹配项。
 如果没有任何意图满足阈值，则系统会调用无匹配事件。</br>
-### 4.3.2 默认欢迎意图
+### <a name="61">4.3.2 默认欢迎意图</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 创建代理时，系统会为您创建默认欢迎意图。对于某些语言，意图具有简单的训练短语（例如“Hi”或“Hello”），旨在匹配初始最终用户输入。您可以根据需要修改此意图。</br>
-### 4.3.3 默认负意图
+### <a name="62">4.3.3 默认负意图</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 创建代理时，系统会为您创建默认负意图。您可以将训练短语添加到此意图中作为反例</br>
-### 4.3.4 取消意图
+### <a name="63">4.3.4 取消意图</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 取消意图的训练短语应处理通用尝试和主题特有的尝试取消。例如：</br>
 取消</br>
 停止</br>
@@ -947,15 +967,15 @@ Route Groups 为路由组，路由组打包了一组路由。当你在多个页�
 删除新预约</br>
 
 
-## 4.4 实体
-### 4.4.1 实体类型
+## <a name="64">4.4 实体</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="65">4.4.1 实体类型</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 实体分系统实体和自定义实体，这些系统实体可以匹配许多常见数据类型。例如，有用于匹配日期、时间、颜色、电子邮件地址等类型的系统实体。自定义实体是开发者根据需求自定义的实体。</br>
-### 4.4.2 “普通实体”和会话实体
+### <a name="66">4.4.2 “普通实体”和会话实体</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 会话”表示 Dialogflow 代理与最终用户之间的对话。您可以在会话期间创建名为“会话实体”或“用户实体”的特殊实体。 会话实体可以扩展或替换自定义实体类型，并且仅在为其创建的会话期间存在。 Dialogflow 将所有会话数据（包括会话实体）存储 20 分钟，也就是说从当前会话结束的那一刻开始，在20分钟内，如果没有通过同样的session id来访问该代理，该会话的实体就被被清空。</br>
 "普通实体"为本人命名，这是相对会话实体而言的，意思是长期有效的实体。</br>
-# 5. 流的版本和环境
-## 5.1 概念
+# <a name="67">5. 流的版本和环境</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="68">5.1 概念</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 草稿：没有环境的代理为草稿，我们在控制台编辑的代理叫草稿。</br>
 草稿流：草稿代理种的流为草稿流。</br>
 我们可以保存一个草稿流为一个版本，这个版本的流相当于一个快照，包含了该流中原有的实体、路由、意图、网络钩子等信息。</br>
@@ -964,7 +984,7 @@ Route Groups 为路由组，路由组打包了一组路由。当你在多个页�
 - 每个代理的环境数量上限：20 个</br>
 - 每个流的版本数量限制：20个</br>
 
-## 5.2 创建建流版本
+## <a name="69">5.2 创建建流版本</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 关于代理的所有操作dialogflow都提供API、客户端库、控制台三种方式，流的版本创建亦是如此。
 ![image](https://user-images.githubusercontent.com/30898964/151107494-aae0c51b-27bd-4acc-97fc-c1e8763a4304.png)
 
@@ -973,7 +993,7 @@ Route Groups 为路由组，路由组打包了一组路由。当你在多个页�
 ![image](https://user-images.githubusercontent.com/30898964/151107655-3296c338-d45b-4453-b22e-9109f9c4a33c.png)
 
 
-## 5.3 创建环境
+## <a name="70">5.3 创建环境</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 请根据下图步骤操作：</br>
 ![image](https://user-images.githubusercontent.com/30898964/151107693-fe002a08-03a1-443b-a222-0413e077a1aa.png)
 
